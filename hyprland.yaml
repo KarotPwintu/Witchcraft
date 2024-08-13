@@ -58,6 +58,7 @@ packages:
   - 'sound-juicer'
   - 'starship'
   - 'steam'
+  - 'stremio'
   - 'sushi'
   - 'suyu-dev-qt6-git'
   - 'swww'
