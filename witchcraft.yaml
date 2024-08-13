@@ -110,19 +110,28 @@ packages:
   - 'zsh-autosuggestion'
   - 'zsh-synthax-highlighting'
   - 'zstd'
+  - 'vulkan-intel'
+  - 'vulkan-radeon'
+  - 'libva-mesa-driver'
+  - 'libva-intel-driver'
+  - 'intel-media-driver'
+  - 'xf86-video-amdgpu'
+  - 'xf86-video-ati'
+  - 'xf86-video-intel'
 
 aur-packeges:
   - 'ttf-maple'
+  
+user-services:
+  - 'blend-files'
+  - 'pipewire'
+  - 'wireplumber'
 
 services:
   - 'cups'
   - 'bluetooth'
-  - 'pipewire'
   - 'NetworkManager'
-  - 'wireplumber'
-
-user-services:
-  - 'blend-files'
+  - 'flatpak-system-helper'
 
 commands:
   - 'rm -f /usr/share/applications/Waydroid.desktop'
