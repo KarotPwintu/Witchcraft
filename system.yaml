@@ -4,6 +4,9 @@ track: hyprland
 
 packages:
     - 'blender'
+    - 'dracula-gtk-theme-git'
+    - 'everforest-gtk-theme-git'
+    - 'gruvbox-material-gtk-theme-git'
 
 package-repos:
     - name: 'chaotic-aur'
