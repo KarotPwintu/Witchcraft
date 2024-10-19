@@ -30,6 +30,10 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
+  services.flatpak.enable = true;
+
+  services.gvfs.enable = true;
+
 
   environment.systemPackages = with pkgs; [
     wget

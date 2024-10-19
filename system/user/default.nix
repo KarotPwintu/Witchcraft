@@ -36,4 +36,5 @@
 #  users.groups.${username} = {};
   
   nix.settings.allowed-users = [ "${username}" ];
+  nix.settings.trusted-users = [ "${username}" ];
 }

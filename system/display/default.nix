@@ -8,7 +8,7 @@
 # ░ ░  ░  ▒ ░░  ░  ░  ░░         ░ ░    ░   ▒   ▒ ▒ ░░  #
 #   ░     ░        ░               ░  ░     ░  ░░ ░     #
 # ░                                             ░ ░     #
-{ pkgs, ...}:
+{ pkgs, config, ...}:
 
 {
   xdg.portal = {
@@ -19,4 +19,7 @@
       pkgs.xdg-desktop-portal-hyprland
     ];
   };
+  #services.xserver.videoDrivers = [ "nvidia" ];
+  #hardware.opengl.enable = true;
+  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 }
