@@ -35,19 +35,6 @@
 
   services.gvfs.enable = true;
   
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-    alpaca
-    bottles
-    fragments
-    nicotine-plus
-    obsidian
-    parsec-bin
-    spotify
-    stremio
-    wine
-  ];
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
