@@ -1,8 +1,0 @@
-#video
-{ pkgs, ... }:
-
-{
-  home.packages = with pkgs; [
-    stremio
-  ];
-}
