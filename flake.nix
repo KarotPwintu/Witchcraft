@@ -11,9 +11,14 @@
 {
   description = "Black magic for witches";
   
-  inputs = {
-
-    #---CORE---#
+  inputs = {             
+#   (                       
+#   )\          (       (  # 
+# (((_)    (    )(     ))\ # 
+# )\___    )\  (()\   /((_)# 
+#((/ __|  ((_)  ((_) (_))  #  
+# | (__  / _ \ | '_| / -_) #  
+#  \___| \___/ |_|   \___| #
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,8 +29,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
-
-    #---HYPRLAND---#
+#    )                                                  #
+# ( /(                        (                    (    #
+# )\())  (              (     )\      )            )\ ) #
+#((_)\   )\ )   `  )    )(   ((_)  ( /(    (      (()/( #
+# _((_) (()/(   /(/(   (()\   _    )(_))   )\ )    ((_))#
+#| || |  )(_)) ((_)_\   ((_) | |  ((_)_   _(_/(    _| | #
+#| __ | | || | | '_ \) | '_| | |  / _` | | ' \)) / _` | #
+#|_||_|  \_, | | .__/  |_|   |_|  \__,_| |_||_|  \__,_| #
+#        |__/  |_|                                      #
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
@@ -61,8 +73,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    #---APPS---#
+#   (                          # 
+#   )\                         # 
+#((((_)(    `  )    `  )    (  # 
+# )\ _ )\   /(/(    /(/(    )\ # 
+# (_)_\(_) ((_)_\  ((_)_\  ((_)# 
+#  / _ \   | '_ \) | '_ \) (_-<# 
+# /_/ \_\  | .__/  | .__/  /__/# 
+#          |_|     |_|         # 
     conf-editor.url = "github:snowfallorg/nixos-conf-editor";
     software-center.url = "github:snowfallorg/nix-software-center";
     zen-browser = {
@@ -83,21 +101,31 @@
     lib = nixpkgs.lib;
 
     in {
+#  ██████ ▓██   ██▓  ██████ ▄▄▄█████▓▓█████  ███▄ ▄███▓  ██████ #
+#▒██    ▒  ▒██  ██▒▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▓██▒▀█▀ ██▒▒██    ▒ #
+#░ ▓██▄     ▒██ ██░░ ▓██▄   ▒ ▓██░ ▒░▒███   ▓██    ▓██░░ ▓██▄   #
+#  ▒   ██▒  ░ ▐██▓░  ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ▒██    ▒██   ▒   ██▒#
+#▒██████▒▒  ░ ██▒▓░▒██████▒▒  ▒██▒ ░ ░▒████▒▒██▒   ░██▒▒██████▒▒#
+#▒ ▒▓▒ ▒ ░   ██▒▒▒ ▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░░ ▒░   ░  ░▒ ▒▓▒ ▒ ░#
+#░ ░▒  ░ ░ ▓██ ░▒░ ░ ░▒  ░ ░    ░     ░ ░  ░░  ░      ░░ ░▒  ░ ░#
+#░  ░  ░   ▒ ▒ ░░  ░  ░  ░    ░         ░   ░      ░   ░  ░  ░  #
+#      ░   ░ ░           ░              ░  ░       ░         ░  #
+#          ░ ░                                                   #     
       nixosConfigurations = {
-      desktop = lib.nixosSystem {
+      ${desktop} = lib.nixosSystem {
         inherit system;
         modules = [ ./hosts/desktop ];
-        specialArgs = { host="desktop"; inherit self inputs username ; };
+        specialArgs = { host="${desktop}"; inherit self inputs username ; };
       };
       laptop = lib.nixosSystem {
         inherit system;
         modules = [ ./hosts/laptop ];
         specialArgs = { host="laptop"; inherit self inputs username ; };
       };
-      server = lib.nixosSystem {
+      ${server} = lib.nixosSystem {
         inherit system;
         modules = [ ./hosts/server ];
-        specialArgs = { host="server"; inherit self inputs username ; };
+        specialArgs = { host="${server}"; inherit self inputs username ; };
       };
     };
   };

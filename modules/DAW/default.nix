@@ -13,9 +13,9 @@
 {
   environment.systemPackages = with pkgs; [
     ardour
-    fretboard
-    hydrogen
+    #fretboard
+    #hydrogen
     mixxx
-    musescore
+    #musescore
   ];
 }

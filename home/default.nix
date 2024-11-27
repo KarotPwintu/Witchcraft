@@ -12,9 +12,10 @@
 
 {
   imports = [
-    ./env/Hyprland
-    ./shell
-    ./web
+    ./connection
+    ./DE/Hyprland
+    ./SHELL
+    ./WEB
   ];
 
   home = { 

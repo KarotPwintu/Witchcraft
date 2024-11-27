@@ -14,5 +14,9 @@
   imports = [
     ./hardware-configuration.nix
     ../../system
+    ../../modules/DEV
+    ../../modules/GAMING
+    ../../modules/MEDIA
+    ../../modules/VIRT
   ];
 }
