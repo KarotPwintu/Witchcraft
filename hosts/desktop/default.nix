@@ -22,6 +22,6 @@
     #../../modules/MEDIA
     #../../modules/VFX
     #../../modules/VIRT
-    #../../theme
+    ../../theme
   ];
 }
