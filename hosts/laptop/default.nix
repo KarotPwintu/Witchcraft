@@ -15,8 +15,9 @@
     ./hardware-configuration.nix
     ../../system
     ../../modules/DEV
-    ../../modules/GAMING
-    ../../modules/MEDIA
-    ../../modules/VIRT
+    #../../modules/GAMING
+    #../../modules/MEDIA
+    #../../modules/VIRT
+    ../../theme
   ];
 }
