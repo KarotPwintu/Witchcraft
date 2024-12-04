@@ -30,6 +30,7 @@
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pyprland.url = "github:hyprland-community/pyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
