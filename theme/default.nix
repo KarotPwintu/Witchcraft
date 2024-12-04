@@ -7,7 +7,7 @@
 #    ░     ▒ ░▒░ ░ ░ ░  ░░  ░      ░ ░ ░  ░#
 #  ░       ░  ░░ ░   ░   ░      ░      ░   #
 #          ░  ░  ░   ░  ░       ░      ░  ░#                                          
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -15,17 +15,17 @@
   ];
   stylix = {
     enable = true;
-    image = ./wallpaper/wallpaper.gif;
+    image = ./Wallpaper/wall.png;
     polarity = "dark";
-    opacity = {};
+    #opacity = {};
     fonts = {
       serif = {
         name = "sf-pro";
-        package = ;
+        package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
       };
       sansSerif = {
         name = "sf-pro";
-        package = ;
+        package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
       };
       monospace = {
         name = "maple mono";

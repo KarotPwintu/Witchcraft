@@ -12,6 +12,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    nicotine-plus
     spotify
+    stremio
   ];
 }

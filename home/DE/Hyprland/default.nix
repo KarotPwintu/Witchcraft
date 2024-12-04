@@ -21,9 +21,9 @@
 #|___| |_||_|    \_/    |_| |_|   \___/ |_||_|  |_|_|_|  \___|  |_||_|   \__| #                                                                                
     ./Apps
     ./Display
-    ./Input
-    ./Layout
-    ./Rules
+    #./Input
+    #./Layout
+    #./Rules
     ./Services
     #./Shell
     ./Theme
@@ -35,10 +35,10 @@
     enable = true;
     #package = inputs.hyprland.packages.${pkgs.system}.default;
     plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-      borders-plus-plus
-      hyprbars
-      hyprexpo
-      hyprtrails
+      #borders-plus-plus
+      #hyprbars
+      #hyprexpo
+      #hyprtrails
       #hyprwinwrap
     ];
 # (                                                   # 
@@ -55,7 +55,6 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "swww init"
         "swww-daemon --format xrgb"
-        "swww img /etc/nixos/theme/wallpaper/wallpaper.gif"
       ];
       general = {
         border_size = 1;
@@ -72,7 +71,7 @@
         no_hardware_cursors = true;
       };
       misc = {
-        disable_hyprland_logo = false;
+        disable_hyprland_logo = true;
         disable_splash_rendering = true;
         vfr = true;
         vrr = 0;

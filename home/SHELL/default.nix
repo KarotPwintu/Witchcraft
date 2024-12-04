@@ -55,7 +55,7 @@
         "rm -rf *" = "fg=white,bold,bg=red";
       };
     };  
-    dotDir = "./nix/shell";
+    dotDir = "./.nix/shell";
     #history = {};
   };
 }

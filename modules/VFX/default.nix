@@ -12,10 +12,10 @@
 
 {
   environment.systemPackages = with pkgs; [
-    davinci-resolve-studio
+    davinci-resolve
     blender
-    houdini
-    #makehuman
+   # houdini
+    makehuman
   ];
   #maya
   #renderman

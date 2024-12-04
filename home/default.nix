@@ -12,7 +12,7 @@
 
 {
   imports = [
-    ./connection
+    #./connection
     ./DE/Hyprland
     ./SHELL
     ./WEB
@@ -37,5 +37,5 @@
       pkgs.xdg-desktop-portal-hyprland
     ];
   };
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 }

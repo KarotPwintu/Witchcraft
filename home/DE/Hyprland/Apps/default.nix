@@ -15,10 +15,10 @@
   imports = [
     ./Files.nix
     #./Lock.nix
-    ./Music.nix
+    #./Music.nix
     ./Polkit.nix
     ./Terminal.nix
-    ./Video.nix
+    #./Video.nix
   ];
 
   home.packages = with pkgs; [

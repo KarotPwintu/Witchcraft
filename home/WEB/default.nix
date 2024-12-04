@@ -17,7 +17,11 @@
   ];
   programs.firefox = {
     enable = true;
-    policies = {};
-    profiles = {};
+    #policies = {};
+   # profiles = {
+   #   default = {
+   #     extensions = with pkgs; [];
+   #   };
+   # };
   };
 }
