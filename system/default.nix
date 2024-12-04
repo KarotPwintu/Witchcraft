@@ -12,14 +12,14 @@
 
 {
   imports = [
-    #./audio
+    ./audio
     ./boot
     ./display
     ./greeter
     ./kernel
-    #./network
+    ./network
     #./update
-    #./user
+    ./user
     #./vpn
   ];
   #DEV
