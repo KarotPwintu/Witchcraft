@@ -62,12 +62,12 @@
           ./configuration.nix
           #inputs.lix-module.nixosModules.default
           inputs.catppuccin.nixosModules.catppuccin
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.emile = import ./home;
-          }
+          #inputs.home-manager.nixosModules.home-manager
+          #{
+          #  home-manager.useGlobalPkgs = true;
+          #  home-manager.useUserPackages = true;
+          #  home-manager.users.ema = import ./home;
+          #}
         ];
       };
     };

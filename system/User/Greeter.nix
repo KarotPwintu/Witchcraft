@@ -3,7 +3,7 @@
 {
   services.greetd = {
     enable = true;
-    packages = pkgs.greetd.tuigreet;
+    package = pkgs.greetd.tuigreet;
   };
   #services.xserver.displayManager.gdm = {
   #  enable = true;

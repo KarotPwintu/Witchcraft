@@ -4,7 +4,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    image = ;
+    image = ~/Pictures/Castle.jpg;
     fonts = {
       serif = {
         package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;

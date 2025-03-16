@@ -21,12 +21,9 @@
     protonvpn-gui
     #protonmail-bridge-gui
     openrgb
-    protonmail-desktop
     discord
     parsec-bin
     vlc
-    spotify
     nicotine-plus
-    stremio
   ];
 }

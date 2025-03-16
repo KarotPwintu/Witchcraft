@@ -3,12 +3,14 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      #./modules/AI
       ./modules/CAT
-      ./modules/GAMING
-      ./modules/HACK
-      ./modules/MAGIC
-      ./modules/MEDIA
-      ./modules/STYLIX
+      #./modules/DAW
+      #./modules/GAMING
+      #./modules/HACK
+      #./modules/MAGIC
+      #./modules/MEDIA
+      #./modules/STYLIX
       ./system
       ./hardware-configuration.nix
     ];

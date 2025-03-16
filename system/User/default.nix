@@ -1,10 +1,11 @@
 { pkgs, ... }:
 {
+  #imports = [ ./Greeter.nix ];
   users = {
     defaultUserShell = pkgs.zsh;
-    users.emile = {
+    users.ema = {
       isNormalUser = true;
-      description = "Emile";
+      description = "Ema";
       useDefaultShell = true;
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [];

@@ -20,8 +20,8 @@
     #inputs.ags.homeManagerModules.default
   ];
   home = {
-    username = "emile";
-    homeDirectory = "/home/emile";
+    username = "ema";
+    homeDirectory = "/home/ema";
   };
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";

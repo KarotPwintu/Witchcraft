@@ -57,7 +57,7 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
-    GTK_THEME = "Colloid-Dark";
+    GTK_THEME = "Catppuccin";
     GBM_BACKEND= "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME= "nvidia";
     LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration
