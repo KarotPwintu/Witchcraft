@@ -44,6 +44,7 @@
           ./config
           ./pkgs
           ./services
+          ./temp
           ./theme
         ];
         wayland.windowManager.hyprland = {
