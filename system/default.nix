@@ -21,7 +21,7 @@
 { ... }:
 
 {
-  flake.nixosModules.System = { config, ... }:
+  flake.nixosModules.system = { config, ... }:
   {
     imports = [
       ./config

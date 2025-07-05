@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, settings, ... }:
 
 {
   users = {
-    users.ema = {
+    users.{$settings.username} = {
       isNormalUser = true;
-      description = "Ema";
+      description = "{$settings.name}";
       extraGroups = [ "networkmanager" "wheel" ];
       packages = with pkgs; [
       ];
