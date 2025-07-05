@@ -29,11 +29,11 @@
       host = "Desktop";
     };
   in 
-    flake-parts.lib.mkFlake { inherit inputs settings; } {
+    flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         (./. + "/hosts" + ("/" + settings.host))
         ./modules
-        ./settings.nix
+        ./system
       ];
       systems = [
         "x86_64-linux"

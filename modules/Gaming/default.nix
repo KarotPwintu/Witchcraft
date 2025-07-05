@@ -1,4 +1,4 @@
-{ inputs }:
+{ inputs, ... }:
 
 {
   flake.nixosModules.gaming = { lib, config, ... }:
@@ -9,7 +9,7 @@
     imports = [];
 
     options.witchcraft.gaming = {
-      enable = lib.mkEnableOptions "Gaming";
+      enable = lib.mkEnableOption "Gaming";
     };
 
     config = lib.mkIf cfg.enable {

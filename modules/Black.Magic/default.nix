@@ -18,19 +18,18 @@
    / /\ \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \/\ \
    \ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `' /
     `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--' */
-{ inputs, settings, ... }:
+{ inputs, ... }:
 
 {
-  flake.nixosModules.blackmagic = { config, lib, ... }:
+  flake.nixosModules.blackmagic = { config, lib, pkgs, ... }:
   let
     cfg = config.witchcraft.blackmagic;
-    hm = home-manager.users.${settings.username};
   in
   {
     imports = [];
 
     options.witchcraft.blackmagic = {
-      enable = lib.mkEnableOptions "BlackMagic";
+      enable = lib.mkEnableOption "BlackMagic";
     };
 
     config = lib.mkIf cfg.enable {
@@ -39,7 +38,7 @@
           withUWSM = true;
         };
       };
-      hm = {
+      home-manager.users.ema = {
         imports = [
           ./config
           ./pkgs
