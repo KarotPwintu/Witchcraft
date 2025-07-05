@@ -21,20 +21,15 @@
 {
   description = "Black Magic for witches";
 
-  outputs = inputs:
-    inputs.snowfall-lib.mkFlake {
-      inherit inputs;
-      src = ./.;
-      snowfall = {
-        root = ./nix;
-        namespace = "blackmagic";
-        meta = {
-          name = "witchcraft";
-          title = "Witchcraft";
-        };
-      };
+  outputs = {flake-parts, ... }@inputs:
+  let 
+    settings = {};
+  in 
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux";
+      ];
     };
-
   inputs = {
 
     #=Core=#
@@ -42,15 +37,14 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-24.05";
     };
     home = {
       url = "github:nix-community/home-manager";
-    };
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
