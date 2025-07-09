@@ -21,7 +21,7 @@
 {
   description = "Black Magic for witches";
 
-  outputs = {flake-parts, ... }@inputs:
+  outputs = { snowfall-lib, ... }@inputs:
   let 
     settings = {
       name = "Ema";
@@ -29,15 +29,19 @@
       host = "Desktop";
     };
   in 
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        (./. + "/hosts" + ("/" + settings.host))
-        ./modules
-        ./system
-      ];
-      systems = [
-        "x86_64-linux"
-      ];
+    snowfall-lib.mkFlake {
+      inherit inputs;
+      src = ./.;
+      snowfall = {
+        channels-config = {
+          allowUnfree = true;
+        };
+        namespace = "blackmagic";
+        meta = {
+          name = "witchcraft";
+          title = "Witchcraft";
+        };
+      };
     };
   inputs = {
 
@@ -46,14 +50,18 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
     home = {
       url = "github:nix-community/home-manager";
+    };
+    disko = {
+      url = "github:nix-community/disko";
     };
     chaotic = {
       type = "github";

@@ -21,20 +21,11 @@
 { ... }:
 
 {
-  flake.nixosModules.system = { config, ... }:
-  {
-    imports = [
-      ./config
-      ./core
-      ./security
-      ./services
-    ];
-    options = {};
-    config = {
-      nix = {
-        settings.experimental-features = [ "nix-command" "flakes" ];
-      };
-      system.stateVersion = "25.11";
-    };
-  };
+  imports = [
+    ./config
+    ./core
+    ./nix
+    ./security
+    ./services
+  ];
 }

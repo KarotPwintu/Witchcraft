@@ -18,42 +18,21 @@
    / /\ \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \/\ \
    \ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `' /
     `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--' */
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
-  flake.nixosModules.blackmagic = { config, lib, pkgs, ... }:
-  let
-    cfg = config.witchcraft.blackmagic;
-  in
-  {
-    imports = [];
-
-    options.witchcraft.blackmagic = {
-      enable = lib.mkEnableOption "BlackMagic";
-    };
-
-    config = lib.mkIf cfg.enable {
-      programs = {
-        hyprland = {
-          withUWSM = true;
-        };
-      };
-      home-manager.users.ema = {
-        imports = [
-          ./config
-          ./pkgs
-          ./services
-          ./temp
-          ./theme
-        ];
-        wayland.windowManager.hyprland = {
-          enable = true;
-          package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-          portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-          systemd.enable = false;
-          xwayland.enable = true;
-        };
-      };
-    };
+  imports = [
+    ./config
+    ./pkgs
+    ./services
+    ./temp
+    ./theme
+  ];
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    systemd.enable = false;
+    wayland.enable = true;
   };
 }

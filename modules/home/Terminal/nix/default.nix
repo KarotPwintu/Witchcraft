@@ -8,6 +8,6 @@
   ];
   programs.nh = {
     enable = true;
-    flake = "/home/ema/.nix/";
+    flake = "/home/ema/Desktop/Witchcraft/";
   };
 }
