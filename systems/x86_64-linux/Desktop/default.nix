@@ -18,6 +18,8 @@
   imports = [
     ./hardware-configuration.nix
   ];
+  nixpkgs.config.allowUnfree = true;
+  programs.zsh.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";

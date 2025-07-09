@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, ... }:
 
 {
   networking = {
-    hostName = "witchcraft";
+    hostName = lib.mkDefault "witchcraft";
     networkmanager = {
       enable = true;
     };

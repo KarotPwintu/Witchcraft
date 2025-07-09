@@ -32,6 +32,12 @@
     snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
+      systems.modules.nixos = with inputs; [
+        chaotic.nixosModules.default
+        lix-module.nixosModules.default
+        nur.modules.nixos.default
+        nur.legacyPackages."x86_64-linux".repos.iopq.modules.xraya
+      ];
       snowfall = {
         channels-config = {
           allowUnfree = true;
@@ -40,6 +46,16 @@
         meta = {
           name = "witchcraft";
           title = "Witchcraft";
+        };
+      };
+      snowfallorg.users.${settings.username} = {
+        create = true;
+        admin = true;
+        name = "${settings.username}";
+        home = {
+            enable = true;
+            path = "/mnt/home/my-user";
+            config = {};
         };
       };
     };
@@ -57,7 +73,7 @@
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
-    home = {
+    home-manager = {
       url = "github:nix-community/home-manager";
     };
     disko = {

@@ -4,7 +4,9 @@
   imports = [
     ./Gamemode.nix
     ./Gamescope.nix
-    ./MangoHUD.nix
+    #./MangoHUD.nix
     ./Steam.nix
   ];
+  options = {};
+  config = {};
 }

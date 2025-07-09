@@ -3,7 +3,7 @@
 {
   programs.steam = {
     enable = true;
-    package = pkgs.jovian-chaotic.steam-unwrapped;
+    #package = pkgs.jovian-chaotic.steam-unwrapped;
     extraPackages = with pkgs; [];
     extraCompatPackages = with pkgs; [ proton-ge-custom ];
     extest.enable = true;
