@@ -1,9 +1,9 @@
 {
   disko.devices = {
     disk = {
-      x = {
+      System = {
         type = "disk";
-        device = "/dev/nvme0n1p1";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -27,9 +27,9 @@
           };
         };
       };
-      y = {
+      Games = {
         type = "disk";
-        device = "/dev/nvme0n1p2";
+        device = "/dev/nvme1n1";
         content = {
           type = "gpt";
           partitions = {
