@@ -21,63 +21,57 @@
 {
   description = "Black Magic for witches";
 
-  outputs = { snowfall-lib, ... }@inputs:
-  let 
-    settings = {
+  outputs = { flake-parts, ... }@inputs: let
+    cfg = {
       name = "Ema";
       username = "ema";
-      host = "Desktop";
     };
-  in 
-    snowfall-lib.mkFlake {
-      inherit inputs;
-      src = ./.;
-      systems.modules.nixos = with inputs; [
-        chaotic.nixosModules.default
-        lix-module.nixosModules.default
-        nur.modules.nixos.default
-        nur.legacyPackages."x86_64-linux".repos.iopq.modules.xraya
-      ];
-      snowfall = {
-        channels-config = {
-          allowUnfree = true;
-        };
-        namespace = "blackmagic";
-        meta = {
-          name = "witchcraft";
-          title = "Witchcraft";
-        };
-      };
-      snowfallorg.users.${settings.username} = {
-        create = true;
-        admin = true;
-        name = "${settings.username}";
-        home = {
-            enable = true;
-            path = "/mnt/home/my-user";
-            config = {};
-        };
-      };
-    };
+  in
+  flake-parts.lib.mkFlake { inherit inputs; } {
+    #flake = {
+    #  nixosConfigurations = let
+    #    inherit (inputs.nixpkgs.lib) nixosSystem;
+    #    specialArgs = { inherit inputs self;};
+    #  in
+    #  {
+    #    witchcraft = nixosSystem {
+    #      inherit specialArgs;
+    #      modules = [];
+    #    };
+    #  };
+    #};
+    systems = [
+      "x86_64-linux"
+    ];
+    imports = [
+      ./modules
+      ./hosts/Desktop
+    ];
+  };
   inputs = {
-
+    
     #=Core=#
+
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      type = "github";
+      owner = "nix-community";
+      repo = "disko";
+    };
+    lanzaboote = {
+      type = "github";
+      owner = "nix-community";
+      repo = "lanzaboote";
+      ref ="v0.4.2";
     };
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-    };
-    disko = {
-      url = "github:nix-community/disko";
+      type = "github";
+      owner = "nixos";
+      repo = "nixpkgs";
+      ref = "nixos-unstable";
     };
     chaotic = {
       type = "github";
@@ -90,6 +84,16 @@
       owner = "nix-community";
       repo = "NUR";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-parts = {
+      type = "github";
+      owner = "hercules-ci";
+      repo = "flake-parts";
+    };
+    home = {
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
     };
     musnix = {
       type = "github";

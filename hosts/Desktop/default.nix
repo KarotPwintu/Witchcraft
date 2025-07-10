@@ -11,10 +11,14 @@
         ./configuration.nix
         inputs.nur.modules.nixos.default
         inputs.nur.legacyPackages."x86_64-linux".repos.iopq.modules.xraya
-        self.nixosModules.blackmagic
-        self.nixosModules.Terminal
-        self.nixosModules.system
+        self.nixosModules.BlackMagic
         self.nixosModules.Catppuccin
+        self.nixosModules.Code
+        self.nixosModules.Apps
+        self.nixosModules.Spotify
+        self.nixosModules.System
+        self.nixosModules.Proton
+        self.nixosModules.Terminal
         inputs.chaotic.nixosModules.nyx-cache
         inputs.chaotic.nixosModules.nyx-overlay
         inputs.chaotic.nixosModules.nyx-registry

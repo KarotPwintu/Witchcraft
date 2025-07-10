@@ -4,7 +4,11 @@
   imports = [
     ./Black.Magic
     ./Catppuccin
-    ./Gaming
-    ./Terminal
+    ./System
+    ./Apps/app.nix
+    ./Apps/Code
+    ./Apps/Spotify
+    ./Apps/Proton
+    ./Apps/Terminal
   ];
 }

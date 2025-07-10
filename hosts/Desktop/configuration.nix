@@ -36,6 +36,7 @@
   environment.systemPackages = with pkgs; [
     vesktop
     lollypop
+    fragments
     nicotine-plus
     stremio
     libimobiledevice
