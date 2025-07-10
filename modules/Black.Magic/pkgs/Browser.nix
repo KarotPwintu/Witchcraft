@@ -4,8 +4,9 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
-    profiles.Ema = {
-      id = 0;
+    #profiles.default.extensions.force = true;
+    profiles.default = {
+      #id = 0;
       search = {};
       extensions = {
         packages = with pkgs.nur.repos; [

@@ -1,4 +1,4 @@
-{ inputs, ... }: let
+{ inputs, pkgs, ... }: let
   hyprPlugin = inputs.hyprland-plugins.packages.${pkgs.system};
 in
 {
@@ -6,6 +6,10 @@ in
     plugins = with hyprPlugin; [
       hyprtrails
     ];
-    settings.plugin = {};
+    settings.plugin = {
+      hyprtrails = {
+        color = "rgba(180, 190, 254, 1)";
+      };
+    };
   };
 }
