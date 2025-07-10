@@ -17,8 +17,8 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-            zfs = {
-              size = "100%";
+            root = {
+              size = "60%";
               content = {
                 type = "zfs";
                 pool = "zroot";
