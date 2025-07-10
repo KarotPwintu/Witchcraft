@@ -22,7 +22,7 @@
   };
   #environment.systemPackages = [ pkgs.sbctl ];
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
     plymouth = {
