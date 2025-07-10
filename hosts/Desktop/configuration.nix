@@ -10,6 +10,7 @@
      #../../hardware-configuration.nix
       ./disk-config.nix
     ];
+nixpkgs.hostPlatform = "86-64-linux";
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
