@@ -19,7 +19,7 @@
       };
       #systemd-boot.enable = lib.mkForce false;
     };
- # };
+  };
   #environment.systemPackages = [ pkgs.sbctl ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
