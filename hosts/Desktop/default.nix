@@ -19,6 +19,7 @@
         self.nixosModules.System
         self.nixosModules.Proton
         self.nixosModules.Terminal
+        inputs.disko.nixosModules.disko
         inputs.chaotic.nixosModules.nyx-cache
         inputs.chaotic.nixosModules.nyx-overlay
         inputs.chaotic.nixosModules.nyx-registry
