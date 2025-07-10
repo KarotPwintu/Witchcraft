@@ -49,10 +49,13 @@
             ./temp/dev.nix
             ./theme
           ];
+          home.packages = [
+            inputs.astal.packages.${pkgs.system}.io
+          ];
           programs.ags = {
             enable = true;
             systemd.enable = true;
-            configDir = ./src/ags;
+            configDir = ./src;
             extraPackages = [
               inputs.astal.packages.${pkgs.system}.hyprland
               inputs.astal.packages.${pkgs.system}.astal3

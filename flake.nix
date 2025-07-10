@@ -28,18 +28,7 @@
     };
   in
   flake-parts.lib.mkFlake { inherit inputs; } {
-    #flake = {
-    #  nixosConfigurations = let
-    #    inherit (inputs.nixpkgs.lib) nixosSystem;
-    #    specialArgs = { inherit inputs self;};
-    #  in
-    #  {
-    #    witchcraft = nixosSystem {
-    #      inherit specialArgs;
-    #      modules = [];
-    #    };
-    #  };
-    #};
+
     systems = [
       "x86_64-linux"
     ];
@@ -56,22 +45,20 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+    home = {
+      url = "github:nix-community/home-manager";
+    };
     disko = {
-      type = "github";
-      owner = "nix-community";
-      repo = "disko";
+      url = "github:nix-community/disko";
     };
     lanzaboote = {
       type = "github";
       owner = "nix-community";
       repo = "lanzaboote";
       ref ="v0.4.2";
-    };
-    nixpkgs = {
-      type = "github";
-      owner = "nixos";
-      repo = "nixpkgs";
-      ref = "nixos-unstable";
     };
     chaotic = {
       type = "github";
@@ -89,11 +76,6 @@
       type = "github";
       owner = "hercules-ci";
       repo = "flake-parts";
-    };
-    home = {
-      type = "github";
-      owner = "nix-community";
-      repo = "home-manager";
     };
     musnix = {
       type = "github";

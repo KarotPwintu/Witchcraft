@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./Waybar.nix
+    #./Waybar.nix
   ];
   services.avizo = {
     enable = true;

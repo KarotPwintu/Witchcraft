@@ -39,7 +39,6 @@
           rycee.firefox-addons.wayback-machine
           rycee.firefox-addons.web-archives
           #rycee.firefox-addons.vimium # vim
-          meain.firefox-addons.a-n-i-m-a-t-e-d-kitty-cat
         ];
       };
       bookmarks = {
