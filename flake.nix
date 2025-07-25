@@ -1,240 +1,100 @@
-/* .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--. 
-  / .. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \
-  \ \/\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ \/ /
-   \/ /`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'\/ / 
-   / /\                                                                                        / /\ 
-  / /\ \   █     █░ ██▓▄▄▄█████▓ ▄████▄   ██░ ██  ▄████▄  ██▀███  ▄▄▄        █████▒▄▄▄█████▓  / /\ \
-  \ \/ /  ▓█░ █ ░█░▓██▒▓  ██▒ ▓▒▒██▀ ▀█  ▓██░ ██▒▒██▀ ▀█ ▓██ ▒ ██▒████▄    ▓██   ▒ ▓  ██▒ ▓▒  \ \/ /
-   \/ /   ▒█░ █ ░█ ▒██▒▒ ▓██░ ▒░▒▓█    ▄ ▒██▀▀██░▒▓█    ▄▓██ ░▄█ ▒██  ▀█▄  ▒████ ░ ▒ ▓██░ ▒░   \/ / 
-   / /\   ░█░ █ ░█ ░██░░ ▓██▓ ░ ▒▓▓▄ ▄██▒░▓█ ░██ ▒▓▓▄ ▄██▒██▀▀█▄ ░██▄▄▄▄██ ░▓█▒  ░ ░ ▓██▓ ░    / /\ 
-  / /\ \  ░░██▒██▓ ░██░  ▒██▒ ░ ▒ ▓███▀ ░░▓█▒░██▓▒ ▓███▀ ░██▓ ▒██▒▓█   ▓██▒░▒█░      ▒██▒ ░   / /\ \
-  \ \/ /  ░ ▓░▒ ▒  ░▓    ▒ ░░   ░ ░▒ ▒  ░ ▒ ░░▒░▒░ ░▒ ▒  ░ ▒▓ ░▒▓░▒▒   ▓▒█░ ▒ ░      ▒ ░░     \ \/ /
-   \/ /     ▒ ░ ░   ▒ ░    ░      ░  ▒    ▒ ░▒░ ░  ░  ▒    ░▒ ░ ▒░ ▒   ▒▒ ░ ░          ░       \/ / 
-   / /\     ░   ░   ▒ ░  ░      ░         ░  ░░ ░░         ░░   ░  ░   ▒    ░ ░      ░         / /\ 
-  / /\ \      ░     ░           ░ ░       ░  ░  ░░ ░        ░          ░  ░                   / /\ \
-  \ \/ /                        ░                ░                                            \ \/ /
-   \/ /                                                                                        \/ / 
-   / /\.--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--./ /\ 
-  / /\ \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \/\ \
-  \ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `' /
-   `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--' 
-sudo nix run 'github:nix-community/disko/latest#disko-install' --experimental-features 'nix-command flakes' -- --flake github:KarotPwintu/Witchcraft#witchcraft --disk System /dev/nvme0n1*/
 {
-  description = "Black Magic for witches";
+  description = "Black magic for witches";
 
-  outputs = { flake-parts, ... }@inputs: let
-    cfg = {
-      name = "Ema";
-      username = "ema";
+  outputs = { flake-parts, ... }@inputs: 
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.make-shell.flakeModules.default
+        inputs.home-manager.flakeModules.home-manager
+        ./hosts/desktop
+        ./modules/apps
+        ./modules/gnome
+        ./modules/gaming
+        ./modules/nixos
+      ];
+      systems = [
+        "x86_64-linux"
+      ];
+      perSystem = { config, pkgs, ... }: {
+        make-shells.default = {
+          name = "Python";
+          packages = [
+            (pkgs.python3.withPackages(p: with p; [
+
+            ]))
+          ];
+          env = {};
+        };
+      };
     };
-  in
-  flake-parts.lib.mkFlake { inherit inputs; } {
-
-    systems = [
-      "x86_64-linux"
-    ];
-    imports = [
-      ./modules
-      ./hosts/Desktop
-    ];
-  };
   inputs = {
-    
-    #=Core=#
-
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+    };
+    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
+    make-shell.url = "github:nicknovitski/make-shell";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs?ref=nixos-unstable";
     };
-    home = {
+    home-manager = {
       url = "github:nix-community/home-manager";
-    };
-    disko = {
-      url = "github:nix-community/disko";
-    };
-    lanzaboote = {
-      type = "github";
-      owner = "nix-community";
-      repo = "lanzaboote";
-      ref ="v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic = {
-      type = "github";
-      owner = "chaotic-cx";
-      repo = "nyx";
-      ref = "nyxpkgs-unstable";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
     nur = {
-      type = "github";
-      owner = "nix-community";
-      repo = "NUR";
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts = {
-      type = "github";
-      owner = "hercules-ci";
-      repo = "flake-parts";
+      url = "github:hercules-ci/flake-parts";
     };
-    musnix = {
-      type = "github";
-      owner = "musnix";
-      repo = "musnix";
-    };
-    
-    #=Wayland=#
-
-    wayland = {
-      type = "github";
-      owner = "nix-community";
-      repo = "nixpkgs-wayland";
-      #wayland.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin = {
+      url = "github:catppuccin/nix";
     };
     hyprland = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "Hyprland";
+      url = "github:hyprwm/hyprland";
     };
     hyprland-plugins = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "hyprland-plugins";
+      url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    hy3 = {
-      type = "github";
-      owner = "outfoxxed";
-      repo = "hy3";
-      inputs.hyprland.follows = "hyprland";
-    };
-    #hyprchroma = {
-    #  type = "github";
-    #  owner = "alexhulbert";
-    #  repo = "hyprchoma";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
-    hyprgrass = {
-      type = "github";
-      owner = "horriblename";
-      repo = "hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprfocus = {
-      type = "github";
-      owner = "pyt0xic";
-      repo = "hyprfocus";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hypr-dynamic-cursors = {
-      type = "github";
-      owner = "VirtCode";
-      repo = "hypr-dynamic-cursors";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprspace = {
-      type = "github";
-      owner = "KZDKM";
-      repo = "Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-    pyprland = {
-      type = "github";
-      owner = "hyprland-community";
-      repo = "pyprland";
-    };
-    #ignis = {
-    #  type = "githhub";
-    #  owner = "ignis-sh";
-    #  repo = "ignis";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
     astal = {
-      type = "github";
-      owner = "aylur";
-      repo = "astal";
+      url = "github:aylur/astal";
     };
     ags = {
-      type = "github";
-      owner = "aylur";
-      repo = "ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.astal.follows = "astal";
+      url = "github:aylur/ags";
+    };
+    matugen = {
+      url = "github:/InioX/Matugen";
     };
     swww = {
-      type = "github";
-      owner = "LGFae";
-      repo = "swww";
-    };
-    hyprcursor = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "hyprcursor";
-    };
-    hypridle = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "hypridle";
-    };
-    hyprlock = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "hyprlock";
-    };
-    hyprpicker = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "hyprpicker";
-    };
-    hyprsunset = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "hyprsunset";
-    };
-
-    #=Themes=#
-
-    catppuccin = {
-      type = "github";
-      owner = "catppuccin";
-      repo = "nix";
+      url = "github:LGFae/swww";
     };
     apple-fonts = {
-      type = "github";
-      owner = "Lyndeno";
-      repo = "apple-fonts.nix";
+      url = "github:Lyndeno/apple-fonts.nix";
     };
-    cursor = {
-      type = "github";
-      owner = "ndom91";
-      repo = "rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-    };
-
-    #=Apps=#
-
     spotify = {
-      type = "github";
-      owner = "Gerg-L";
-      repo = "spicetify-nix";
-    };
-    emacs = {
-      type = "github";
-      owner = "nix-community";
-      repo = "emacs-overlay";
-    };
-    doom = {
-      type = "github";
-      owner = "nix-community";
-      repo = "nix-doom-emacs";
+      url = "github:Gerg-L/spicetify-nix";
     };
     vim = {
-      type = "github";
-      owner = "nix-community";
-      repo = "nixvim";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    cursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
     };
   };
 }
